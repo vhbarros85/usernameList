@@ -1,5 +1,6 @@
 package com.intertec.username.service;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
@@ -58,7 +59,10 @@ public class UsernameServiceImpl implements UsernameService {
 					 attempts++;
 				 }
 			 }
-			return new Result<Boolean, List<String>>(false, suggestions);
+			if(suggestions != null){
+				Collections.sort( suggestions );
+			}			
+			return new Result<Boolean, List<String>>(false,suggestions );
 		}
 		return new Result<Boolean, List<String>>(true, null);
 	}

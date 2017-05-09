@@ -8,6 +8,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashSet;
 
+import com.intertec.username.exception.InternalException;
+
 /**
  * Utility abstract class responsible for the persistence of simple String Collections.
  * @author vitor
@@ -30,7 +32,8 @@ public abstract class CollectionPersistence {
 	 * Method responsible for retrieving the collection
 	 * @return HashSet<String> with the collection .
 	 */
-	public HashSet<String> retrieveCollection(){
+	@SuppressWarnings("unchecked")
+	public HashSet<String> retrieveCollection() throws InternalException{
 		HashSet<String> collection = null;
         try{
         	FileInputStream read=new FileInputStream(filePath);
@@ -43,11 +46,9 @@ public abstract class CollectionPersistence {
         	writeCollection(collection);
         	return collection;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new InternalException("Persistence error, there was a problem reading the file.", e);
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new InternalException("Persistence error, there was a problem with the type of class saved on file.", e);
 		}        
         return collection;
 	}
@@ -56,7 +57,7 @@ public abstract class CollectionPersistence {
 	 * Method responsible for adding an item to the collection.
 	 * @param item the item to be added.
 	 */
-	public void addItem(String item) {		
+	public void addItem(String item) throws InternalException {		
 		HashSet<String> collection = retrieveCollection();
 		collection.add(item);
 		writeCollection(collection);		 
@@ -66,7 +67,7 @@ public abstract class CollectionPersistence {
 	 * Private class responsible for writing the collection to the file. 
 	 * @param collection the collection to be written to the file.
 	 */
-	private void writeCollection(HashSet<String> collection){
+	private void writeCollection(HashSet<String> collection) throws InternalException{
 		try {
 			FileOutputStream write=new FileOutputStream(filePath);
 			ObjectOutputStream writeFile=new ObjectOutputStream(write);
@@ -75,8 +76,7 @@ public abstract class CollectionPersistence {
 			writeFile.flush();
 			writeFile.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new InternalException("Persistence error, there was a problem saving the file.", e);
 		}
 	}
 }

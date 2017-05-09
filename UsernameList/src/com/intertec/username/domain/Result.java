@@ -1,47 +1,47 @@
 package com.intertec.username.domain;
 
 /**
- * Domain class for the result of the username valid check.
+ * Domain class for the result of the username and restricted words check.
  * @author vitor barros
  *
- * @param <T1> flag to indicate if the username is valid
- * @param <T2> list with the suggested usernames.
+ * @param <T1> flag to indicate if true or false.
+ * @param <T2> list with the suggested usernames or restricted words used.
  */
 public class Result<T1, T2> {
-	private T1 valid; 
-    private T2 suggestionList; 
+	private T1 flag; 
+    private T2 list; 
 
     public Result(T1 valid, T2 suggestionList) {
-        this.valid = valid;
-        this.suggestionList = suggestionList;
+        this.flag = valid;
+        this.list = suggestionList;
     }
 
 	/**
-	 * @return the valid
+	 * @return the flag
 	 */
-	public T1 getValid() {
-		return valid;
+	public T1 getFlag() {
+		return flag;
 	}
 
 	/**
-	 * @param valid the valid to set
+	 * @param flag to set
 	 */
-	public void setValid(T1 valid) {
-		this.valid = valid;
+	public void setFlag(T1 flag) {
+		this.flag = flag;
 	}
 
 	/**
-	 * @return the suggestionList
+	 * @return the list
 	 */
-	public T2 getSuggestionList() {
-		return suggestionList;
+	public T2 getList() {
+		return list;
 	}
 
 	/**
-	 * @param suggestionList the suggestionList to set
+	 * @param the list to set
 	 */
-	public void setSuggestionList(T2 suggestionList) {
-		this.suggestionList = suggestionList;
+	public void setList(T2 list) {
+		this.list = list;
 	}
 
     

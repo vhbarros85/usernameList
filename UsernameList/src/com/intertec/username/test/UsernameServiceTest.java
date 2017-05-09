@@ -14,8 +14,16 @@ import com.intertec.username.exception.InvalidUsernameException;
 import com.intertec.username.service.UsernameService;
 import com.intertec.username.service.UsernameServiceImpl;
 
-public class UsernamServiceTest {
-
+/**
+ * Test class for username.
+ * @author vitor barros
+ *
+ */
+public class UsernameServiceTest {
+	
+	/**
+	 * Test a username that is available.
+	 */
 	@Test
 	public void testAvailableUsername() {
 		UsernameService usernameService = new UsernameServiceImpl();
@@ -28,6 +36,9 @@ public class UsernamServiceTest {
 		
 	}
 	
+	/**
+	 * Test a username that contains a restricted word.
+	 */
 	@Test
 	public void testUsernameWithRestrictedWord() {
 		UsernameService usernameService = new UsernameServiceImpl();
@@ -47,6 +58,9 @@ public class UsernamServiceTest {
 		
 	}
 	
+	/**
+	 * Test a username that is already taken.
+	 */
 	@Test
 	public void testUsernameAlreadyTaken() {
 		UsernameService usernameService = new UsernameServiceImpl();
@@ -60,6 +74,9 @@ public class UsernamServiceTest {
 		
 	}
 	
+	/**
+	 * Test a username that is invalid.
+	 */
 	@Test
 	public void testInvalidUsername() {
 		UsernameService usernameService = new UsernameServiceImpl();
